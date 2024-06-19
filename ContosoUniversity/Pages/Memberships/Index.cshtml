@@ -1,0 +1,48 @@
+﻿@page
+@model ContosoUniversity.Pages.Memberships.IndexModel
+@{
+    ViewData["Title"] = "Membership Index";
+}
+
+<h1>Memberships</h1>
+
+@if (Model.Memberships.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Member ID</th>
+                <th>Student 1</th>
+                <th>Student 2</th>
+                <th>Subscription Start Date</th>
+                <th>Subscription End Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var membership in Model.Memberships)
+            {
+                <tr>
+                    <td>@membership.MemberID</td>
+                    <td>@membership.Student1.FullName</td>
+                    <td>@membership.Student2.FullName</td>
+                    <td>@membership.SubscriptionStartDate.ToString("MM/dd/yyyy")</td>
+                    <td>@membership.SubscriptionEndDate.ToString("MM/dd/yyyy")</td>
+                    <td>
+                        <!-- Optionally, you can add edit/delete actions -->
+                        <a asp-page="./Edit" asp-route-id="@membership.MemberID">Edit</a> |
+                        <a asp-page="./Details" asp-route-id="@membership.MemberID">Details</a> |
+                        <a asp-page="./Delete" asp-route-id="@membership.MemberID">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No memberships found.</p>
+}
+
+<p>
+    <a asp-page="./Create" class="btn btn-primary">Create New Membership</a>
+</p>

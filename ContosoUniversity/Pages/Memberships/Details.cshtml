@@ -1,0 +1,53 @@
+﻿@page
+@model ContosoUniversity.Pages.Memberships.DetailsModel
+@{
+    ViewData["Title"] = "Membership Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Membership</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Student 1:
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Membership.Student1.FullName
+        </dd>
+        <dt class="col-sm-2">
+            Student 2:
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Membership.Student2.FullName
+        </dd>
+        <dt class="col-sm-2">
+            Subscription Start Date:
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Membership.SubscriptionStartDate.ToShortDateString()
+        </dd>
+        <dt class="col-sm-2">
+            Subscription End Date:
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Membership.SubscriptionEndDate.ToShortDateString()
+        </dd>
+        <dt class="col-sm-2">
+            Shared Courses:
+        </dt>
+        <dd class="col-sm-10">
+            <ul>
+                @foreach (var course in Model.Courses)
+                {
+                    <li>@course.Title</li>
+                }
+            </ul>
+        </dd>
+    </dl>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
